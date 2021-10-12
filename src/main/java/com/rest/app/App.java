@@ -15,6 +15,10 @@ import org.springframework.context.annotation.Scope;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 
 @Slf4j
 @SpringBootApplication
@@ -54,6 +58,12 @@ public class App {
         }
 
         if(appConfPath == null || appConfPath.trim().isEmpty()){
+
+//            Path pwd = Paths.get("");
+//            log.warn("Current Working Directory: {}", pwd.toAbsolutePath());
+//            Files.walk(pwd).forEach(p -> log.warn("Existing File: {}", p.toAbsolutePath()));
+
+
             throw new IllegalArgumentException("No app conf file found in (first) command line argument nor REST_APP_CONF ENV variable nor rest.app.conf value in application properties file");
         }
 
@@ -67,6 +77,7 @@ public class App {
      * @param args
      */
     public static void main(String[] args) {
+        log.debug("Args: {}", Arrays.toString(args));
         SpringApplication.run(App.class, args);
     }
 }

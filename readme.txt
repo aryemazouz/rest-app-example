@@ -25,3 +25,37 @@ Limitations:
 
 Running Example:
 java -jar -Dlogging.config="my_path/logback.xml" rest-app-1.0-SNAPSHOT.jar "./input-2.json" --server.port=8080
+
+
+
+***********************************
+***  Docker Build / Tag / Push  ***
+***********************************
+
+export DOCKER_BUILDKIT=0
+export COMPOSE_DOCKER_CLI_BUILD=0
+
+
+docker build . --file Dockerfile --tag rest-app-example:latest
+docker tag rest-app-example:latest aryemazouz/rest-app-example:latest
+docker push aryemazouz/rest-app-example:latest
+
+
+***********************************
+***   Docker Running Example    ***
+***********************************
+docker run \
+	-e "JAVA_OPTS=-Dlogging.config=./conf/logback.xml" \
+	-p 8081:8081 \
+	--mount src=//c/Users/amazouz/Documents/LocalProjects/rest-app-example/conf/logback.xml,target=/conf/logback.xml,type=bind \
+	-v //c/Users/amazouz/Desktop/Private/Orca/data:/mnt \
+	aryemazouz/rest-app-example \
+	./mnt/input-2.json --server.port=8081
+
+
+-e	 									=> set java options (for log configuration)
+-p 										=> expose docker port
+--mount									=> add logback.xml configuration file
+-v 										=> mount appliaction input files
+aryemazouz/rest-app-example 			=> docker image repository and name
+./mnt/input-2.json --server.port=8081 	=> Application args
