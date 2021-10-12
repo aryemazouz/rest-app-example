@@ -27,6 +27,10 @@ Running Example:
 java -jar -Dlogging.config="my_path/logback.xml" rest-app-1.0-SNAPSHOT.jar "./input-2.json" --server.port=8080
 
 
+***********************************
+***           github            ***
+***********************************
+https://github.com/aryemazouz/rest-app-example
 
 ***********************************
 ***  Docker Build / Tag / Push  ***
