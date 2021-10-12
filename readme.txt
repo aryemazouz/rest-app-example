@@ -44,6 +44,8 @@ docker build . --file Dockerfile --tag rest-app-example:latest
 docker tag rest-app-example:latest aryemazouz/rest-app-example:latest
 docker push aryemazouz/rest-app-example:latest
 
+On error: Docker.ApiServices.WSL2.WslShortLivedCommandResult
+sc config "LxssManager" start=auto
 
 ***********************************
 ***   Docker Running Example    ***
@@ -63,3 +65,9 @@ docker run \
 -v 										=> mount appliaction input files
 aryemazouz/rest-app-example 			=> docker image repository and name
 ./mnt/input-2.json --server.port=8081 	=> Application args
+
+***********************************
+***         Test URLs           ***
+***********************************
+http://localhost:8081/api/v1/stats
+http://localhost:8081/api/v1/attack?vm_id=vm-2ba4d2f87
